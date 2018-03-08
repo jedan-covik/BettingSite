@@ -9,6 +9,7 @@ namespace BettingSite.Models
 {
     public class Team
     {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int teamId { get; set; }
 
         [Column(TypeName = "NVARCHAR")]
