@@ -20,14 +20,16 @@ namespace BettingSite.Models
         {
         }
 
-        public System.Data.Entity.DbSet<BettingSite.Models.Sport> Sports { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer<BettingSiteContext>(new DropCreateDatabaseIfModelChanges<BettingSiteContext>());
             base.OnModelCreating(modelBuilder);
         }
 
+        public System.Data.Entity.DbSet<BettingSite.Models.Sport> Sports { get; set; }
+
         public System.Data.Entity.DbSet<BettingSite.Models.Team> Teams { get; set; }
+
+        public System.Data.Entity.DbSet<BettingSite.Models.Match> Matches { get; set; }
     }
 }
