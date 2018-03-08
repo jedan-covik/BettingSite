@@ -110,14 +110,7 @@ namespace BettingSite.Controllers.V1
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SportExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok(sport);
