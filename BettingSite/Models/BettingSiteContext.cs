@@ -27,5 +27,7 @@ namespace BettingSite.Models
             Database.SetInitializer<BettingSiteContext>(new DropCreateDatabaseIfModelChanges<BettingSiteContext>());
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<BettingSite.Models.Team> Teams { get; set; }
     }
 }
