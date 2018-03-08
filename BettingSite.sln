@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSite", "BettingSite\BettingSite.csproj", "{90ECBCD9-0A05-4971-B136-EA7AC5F08936}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BettingSite.Tests", "BettingSite.Tests\BettingSite.Tests.csproj", "{BD6CC706-5D65-42AD-9142-51B2547081C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90ECBCD9-0A05-4971-B136-EA7AC5F08936}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90ECBCD9-0A05-4971-B136-EA7AC5F08936}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90ECBCD9-0A05-4971-B136-EA7AC5F08936}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90ECBCD9-0A05-4971-B136-EA7AC5F08936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6CC706-5D65-42AD-9142-51B2547081C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6CC706-5D65-42AD-9142-51B2547081C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6CC706-5D65-42AD-9142-51B2547081C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6CC706-5D65-42AD-9142-51B2547081C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98AF4F1D-A128-41A9-9578-3E3D6E498376}
+	EndGlobalSection
+EndGlobal
