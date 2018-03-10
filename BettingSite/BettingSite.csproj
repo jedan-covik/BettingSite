@@ -195,6 +195,11 @@
     <Compile Include="Models\Sport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
+    <Compile Include="Services\BonusCalculators\3PairsSameSportBonusCalculator.cs" />
+    <Compile Include="Services\BonusCalculators\AllSportsBonusCalculator.cs" />
+    <Compile Include="Services\BonusCalculators\IBonusCalculator.cs" />
+    <Compile Include="Utility\BonusCalculatorRunner.cs" />
+    <Compile Include="Utility\IBonusCalculatorRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

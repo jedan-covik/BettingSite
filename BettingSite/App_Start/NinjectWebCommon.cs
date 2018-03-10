@@ -1,6 +1,8 @@
 ﻿
 using BettingSite.App_Start;
 using BettingSite.Repositories;
+using BettingSite.Services;
+using BettingSite.Utility;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -46,6 +48,22 @@ namespace BettingSite.App_Start
             //kernel.Bind<IRepo>().ToMethod(ctx => new Repo("Ninject Rocks!"));
 
             kernel.Bind<ISportRepository>().To<SportRepository>();
+            kernel.Bind<IBonusCalculator>().To<AllSportsBonusCalculator>();
+            kernel.Bind<IBonusCalculator>().To<_3PairsSameSportBonusCalculator>();
+
+            kernel.Bind<IBonusCalculatorRunner>().To<BonusCalculatorRunner>();
+        }
+
+        public static IKernel CreatePublicKernel()
+        {
+            if (null == bootstrapper)
+                Start();
+            else if(null == bootstrapper.Kernel)
+            {
+                return CreateKernel();
+            }
+
+            return bootstrapper.Kernel;
         }
     }
 }
