@@ -27,6 +27,9 @@ namespace BettingSite.Models
         public DateTime createDate { get; }
         public bool deleted { get; set; }
 
+        public virtual ICollection<Match> homeMatches { get; set; }
+        public virtual ICollection<Match> awayMatches { get; set; }
+
         public Team()
         {
             createDate = DateTime.Now;
