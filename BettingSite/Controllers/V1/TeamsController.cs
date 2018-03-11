@@ -10,25 +10,30 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BettingSite.Models;
+using BettingSite.Repositories;
 
 namespace BettingSite.Controllers.V1
 {
     public class TeamsController : ApiController
     {
-        private BettingSiteContext db = new BettingSiteContext();
+        private ITeamRepository teamRepository;
+
+        public TeamsController(ITeamRepository teamRepository)
+        {
+            this.teamRepository = teamRepository;
+        }
 
         // GET: api/Teams
         public IQueryable<Team> GetTeams()
         {
-            return db.Teams.Where(t => t.deleted == false)
-                      .AsQueryable();
+            return teamRepository.GetAll();
         }
 
         // GET: api/Teams/5
         [ResponseType(typeof(Team))]
         public async Task<IHttpActionResult> GetTeam(int id)
         {
-            Team team = await db.Teams.Where(t => (t.deleted == false) && (t.teamId == id)).FirstAsync();
+            Team team = await teamRepository.GetById(id);
             if (team == null)
             {
                 return NotFound();
@@ -51,11 +56,9 @@ namespace BettingSite.Controllers.V1
                 return BadRequest();
             }
 
-            db.Entry(team).State = EntityState.Modified;
-
             try
             {
-                await db.SaveChangesAsync();
+                await teamRepository.Update(id, team);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -81,8 +84,7 @@ namespace BettingSite.Controllers.V1
                 return BadRequest(ModelState);
             }
 
-            db.Teams.Add(team);
-            await db.SaveChangesAsync();
+            await teamRepository.Add(team);
 
             return CreatedAtRoute("DefaultApi", new { id = team.teamId }, team);
         }
@@ -91,18 +93,15 @@ namespace BettingSite.Controllers.V1
         [ResponseType(typeof(Team))]
         public async Task<IHttpActionResult> DeleteTeam(int id)
         {
-            Team team = await db.Teams.FindAsync(id);
+            Team team = await teamRepository.GetById(id);
             if (team == null)
             {
                 return NotFound();
             }
 
-            team.deleted = true;
-            db.Entry(team).State = EntityState.Modified;
-
             try
             {
-                await db.SaveChangesAsync();
+                await teamRepository.Delete(team);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -112,18 +111,9 @@ namespace BettingSite.Controllers.V1
             return Ok(team);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
         private bool TeamExists(int id)
         {
-            return db.Teams.Count(e => e.teamId == id) > 0;
+            return teamRepository.TeamExists(id);
         }
     }
 }
