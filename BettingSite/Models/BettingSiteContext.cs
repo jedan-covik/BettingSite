@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BettingSite.Database;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -22,7 +23,7 @@ namespace BettingSite.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<BettingSiteContext>(new DropCreateDatabaseIfModelChanges<BettingSiteContext>());
+            System.Data.Entity.Database.SetInitializer<BettingSiteContext>(new MockDataDBInitializer());
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Match>()
