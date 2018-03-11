@@ -27,7 +27,7 @@ namespace BettingSite.Models
         public DateTime createDate { get; } = DateTime.UtcNow;
         public bool deleted { get; set; } = false;
 
-        public virtual ICollection<Match> homeMatches { get; set; }
-        public virtual ICollection<Match> awayMatches { get; set; }
+        public ICollection<Match> homeMatches { get; set; }
+        public ICollection<Match> awayMatches { get; set; }
     }
 }
