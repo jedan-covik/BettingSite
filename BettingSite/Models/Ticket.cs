@@ -19,5 +19,7 @@ namespace BettingSite.Models
 
         [Index("SX_Wallet")]
         public int walletId { get; set; }
+
+        public DateTime createDate { get; set; } = DateTime.UtcNow;
     }
 }

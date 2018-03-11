@@ -18,5 +18,7 @@ namespace BettingSite.Models
         public String bonusDescription { get; set; }
 
         public decimal bonusAmount { get; set; }
+
+        public DateTime createDate { get; set; } = DateTime.UtcNow;
     }
 }

@@ -24,5 +24,7 @@ namespace BettingSite.Models
         public decimal wagerAmount { get; set; }
 
         public decimal matchQuota { get; set; }
+
+        public DateTime createDate { get; set; } = DateTime.UtcNow;
     }
 }

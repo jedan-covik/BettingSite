@@ -14,5 +14,8 @@ namespace BettingSite.Models
 
         [Column(TypeName = "Money")]
         public decimal amount { get; set; }
+
+        public DateTime createDate { get; set; } = DateTime.UtcNow;
+
     }
 }

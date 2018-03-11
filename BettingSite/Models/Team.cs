@@ -24,16 +24,10 @@ namespace BettingSite.Models
 
         public virtual Sport sport { get; set; }
 
-        public DateTime createDate { get; }
-        public bool deleted { get; set; }
+        public DateTime createDate { get; } = DateTime.UtcNow;
+        public bool deleted { get; set; } = false;
 
         public virtual ICollection<Match> homeMatches { get; set; }
         public virtual ICollection<Match> awayMatches { get; set; }
-
-        public Team()
-        {
-            createDate = DateTime.Now;
-            deleted = false;
-        }
     }
 }

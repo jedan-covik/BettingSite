@@ -18,13 +18,8 @@ namespace BettingSite.Models
         [Index("SX_Name", 1, IsUnique = true)]
         public String name { get; set; }
 
-        public DateTime createDate { get; }
-        public bool deleted { get; set; }
+        public DateTime createDate { get; } = DateTime.UtcNow;
 
-        public Sport()
-        {
-            createDate = DateTime.Now;
-            deleted = false;
-        }
+        public bool deleted { get; set; } = false;
     }
 }

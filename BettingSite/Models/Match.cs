@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace BettingSite.Models
 
         public decimal matchQuota { get; set; }
 
-        public DateTime createDate { get; set; }
+        [DefaultValue("getutcdate()")]
+        public DateTime createDate { get; set; } = DateTime.UtcNow;
     }
 }
