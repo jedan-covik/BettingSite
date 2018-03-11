@@ -18,8 +18,6 @@ namespace BettingSite.Models
         [Index("SX_Name", 1, IsUnique = true)]
         public String name { get; set; }
 
-        public bool teamSport { get; set; }
-
         [Index("UX_Team_Sport", 2, IsUnique = true)]
         [Index("SI_Sport", 1)]
         public int sportId { get; set; }
