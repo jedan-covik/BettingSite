@@ -11,6 +11,10 @@ namespace BettingSite.Database
     {
         protected override void Seed(BettingSiteContext context)
         {
+            context.WagerTypes.Add(new WagerType { wagerTypeId = 1, description = "1" });
+            context.WagerTypes.Add(new WagerType { wagerTypeId = 2, description = "2" });
+            context.WagerTypes.Add(new WagerType { wagerTypeId = 3, description = "x" });
+
             context.Sports.Add(new Sport { sportId = 1, name = "Nogomet" });
             context.Sports.Add(new Sport { sportId = 2, name = "Košarka" });
 
@@ -19,9 +23,13 @@ namespace BettingSite.Database
             context.Teams.Add(new Team { teamId = 3, name = "Zadar", sportId = 1 });
 
             context.Matches.Add(new Match { matchId = 1, homeTeamId = 1, guestTeamId = 2, matchQuota = (decimal)1.4, matchDateTime = new DateTime(2018, 3, 16, 18, 0, 0) });
-            context.Matches.Add(new Match { matchId = 1, homeTeamId = 3, guestTeamId = 2, matchQuota = (decimal)1.8, matchDateTime = new DateTime(2018, 3, 22, 18, 0, 0) });
+            context.Matches.Add(new Match { matchId = 2, homeTeamId = 3, guestTeamId = 2, matchQuota = (decimal)1.8, matchDateTime = new DateTime(2018, 3, 22, 18, 0, 0) });
 
             context.Wallets.Add(new Wallet { walletId = 1, amount = 100 });
+
+            context.Tickets.Add(new Ticket { ticketId = 1, totalWager = 50, walletId = 1 });
+
+            context.TicketWagers.Add(new TicketWagers { ticketWagerId = 1, ticketId = 1, matchId = 1, wagerTypeId = 1});
 
             context.SaveChanges();
         }

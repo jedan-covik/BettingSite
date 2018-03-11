@@ -48,6 +48,8 @@ namespace BettingSite.App_Start
 
             kernel.Bind<ISportRepository>().To<SportRepository>();
             kernel.Bind<ITeamRepository>().To<TeamRepository>();
+
+            kernel.Bind<ITicketRepository>().To<TicketRepository>();
         }
     }
 }

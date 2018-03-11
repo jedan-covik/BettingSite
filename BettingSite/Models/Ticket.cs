@@ -21,5 +21,7 @@ namespace BettingSite.Models
         public int walletId { get; set; }
 
         public DateTime createDate { get; set; } = DateTime.UtcNow;
+
+        public virtual List<TicketWagers> TicketWagers { get; set; }
     }
 }

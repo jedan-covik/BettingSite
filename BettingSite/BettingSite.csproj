@@ -189,6 +189,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\V1\SportsController.cs" />
     <Compile Include="Controllers\V1\TeamsController.cs" />
+    <Compile Include="Controllers\V1\TicketsController.cs" />
     <Compile Include="Database\MockDataDBInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,6 +204,7 @@
     <Compile Include="Models\WagerType.cs" />
     <Compile Include="Models\Wallet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\TicketRepository.cs" />
     <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
   </ItemGroup>

@@ -26,5 +26,7 @@ namespace BettingSite.Models
         public decimal matchQuota { get; set; }
 
         public DateTime createDate { get; set; } = DateTime.UtcNow;
+
+        public virtual Match Match { get; set; }
     }
 }
