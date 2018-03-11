@@ -45,6 +45,8 @@ namespace BettingSite.App_Start
         {
             //kernel.Bind<IRepo>().ToMethod(ctx => new Repo("Ninject Rocks!"));
 
+
+            kernel.Bind<ISportRepository>().To<SportRepository>();
             kernel.Bind<ITeamRepository>().To<TeamRepository>();
         }
     }

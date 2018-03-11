@@ -182,8 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\V1\TeamsControllerTestcs.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\V1\SportsControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -195,6 +195,7 @@
       <Name>BettingSite</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

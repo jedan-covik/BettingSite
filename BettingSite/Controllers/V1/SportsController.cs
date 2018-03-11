@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BettingSite.Models;
+using BettingSite.Repositories;
 using Microsoft.Web.Http;
 
 namespace BettingSite.Controllers.V1
@@ -18,20 +19,24 @@ namespace BettingSite.Controllers.V1
     //[Route("api/v{version:apiVersion}/Sports")]
     public class SportsController : ApiController
     {
-        private BettingSiteContext db = new BettingSiteContext();
+        private ISportRepository sportRepository;
+
+        public SportsController(ISportRepository sportRepository)
+        {
+            this.sportRepository = sportRepository;
+        }
 
         // GET: api/Sports
         public IQueryable<Sport> GetSports()
         {
-            return db.Sports.Where(s => s.deleted == false)
-                      .AsQueryable();
+            return sportRepository.GetAll();
         }
 
         // GET: api/Sports/5
         [ResponseType(typeof(Sport))]
         public async Task<IHttpActionResult> GetSport(int id)
         {
-            Sport sport = await db.Sports.Where(s => (s.deleted == false) && (s.sportId == id)).FirstAsync();
+            Sport sport = await sportRepository.GetById(id);
             if (sport == null)
             {
                 return NotFound();
@@ -54,15 +59,13 @@ namespace BettingSite.Controllers.V1
                 return BadRequest();
             }
 
-            db.Entry(sport).State = EntityState.Modified;
-
             try
             {
-                await db.SaveChangesAsync();
+                await sportRepository.Update(id, sport);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SportExists(id))
+                if (!sportRepository.SportExists(id))
                 {
                     return NotFound();
                 }
@@ -84,8 +87,7 @@ namespace BettingSite.Controllers.V1
                 return BadRequest(ModelState);
             }
 
-            db.Sports.Add(sport);
-            await db.SaveChangesAsync();
+            await sportRepository.Add(sport);
 
             return CreatedAtRoute("DefaultApi", new { id = sport.sportId }, sport);
         }
@@ -94,47 +96,22 @@ namespace BettingSite.Controllers.V1
         [ResponseType(typeof(Sport))]
         public async Task<IHttpActionResult> DeleteSport(int id)
         {
-            Sport sport = await db.Sports.FindAsync(id);
+            Sport sport = await sportRepository.GetById(id);
             if (sport == null)
             {
                 return NotFound();
             }
 
-
-            sport.deleted = true;
-            db.Entry(sport).State = EntityState.Modified;
-
             try
             {
-                await db.SaveChangesAsync();
+                await sportRepository.Delete(sport);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SportExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
             return Ok(sport);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool SportExists(int id)
-        {
-            return db.Sports.Count(e => e.sportId == id) > 0;
         }
     }
 }
