@@ -11,6 +11,7 @@ using Ninject.Web.WebApi;
 using System;
 using System.Web;
 using System.Web.Http;
+using Ninject.Extensions.Conventions;
 using static BettingSite.Repositories.TicketWagersRepository;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
@@ -57,9 +58,12 @@ namespace BettingSite.App_Start
 
             kernel.Bind<ITicketWagersRepository>().To<TicketWagersRepository>();
 
-            //TODO:: check how to implement automatic binding?
-            kernel.Bind<IBonusCalculator>().To<AllSportsBonusCalculator>();
-            kernel.Bind<IBonusCalculator>().To<ThreeMatchesSameSportBonusCalculator>();
+            kernel.Bind(x =>
+                x.FromThisAssembly()
+                .SelectAllClasses()
+                .InheritedFrom<IBonusCalculator>()
+                .BindAllInterfaces());
+
         }
     }
 }
