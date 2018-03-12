@@ -15,7 +15,7 @@ namespace BettingSite.Models
         [Column(TypeName = "NVARCHAR")]
         [StringLength(300)]
         [Index("UX_Team_Sport", 1, IsUnique = true)]
-        [Index("SX_Name", 1, IsUnique = true)]
+        [Index("SX_Name")]
         public String name { get; set; }
 
         [Index("UX_Team_Sport", 2, IsUnique = true)]
