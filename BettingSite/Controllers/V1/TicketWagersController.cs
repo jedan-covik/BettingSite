@@ -35,9 +35,20 @@ namespace BettingSite.Controllers.V1
                 return BadRequest(ModelState);
             }
 
-            await ticketWagersRepository.Add(ticketWager);
-
             Ticket ticket = await ticketRepository.GetById(ticketWager.ticketId);
+
+            IQueryable<TicketWagers> tickerWagers = ticketWagersRepository.GetByTicketsId(ticketWager.ticketId);
+            decimal tickerWagerNumOfPairs = tickerWagers.Count() + 1;
+
+            ticketWager.wagerAmount = ticket.totalWager / tickerWagerNumOfPairs;
+
+            foreach (TicketWagers currentWager in tickerWagers.ToList())
+            {
+                currentWager.wagerAmount = ticket.totalWager / tickerWagerNumOfPairs;
+                await ticketWagersRepository.Update(currentWager.ticketWagerId, currentWager);
+            }
+
+            await ticketWagersRepository.Add(ticketWager);
 
             ticket.totalQuota = await quotaCalculator.getQuota(ticket);
 

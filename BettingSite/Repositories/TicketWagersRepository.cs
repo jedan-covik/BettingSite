@@ -13,6 +13,7 @@ namespace BettingSite.Repositories
         Task<TicketWagers> GetById(int id);
         IQueryable<TicketWagers> GetByTicketsId(int ticketId);
         Task Add(TicketWagers TicketWager);
+        Task Update(int ticketWagerId, TicketWagers ticketWager);
     }
 
 
@@ -35,6 +36,12 @@ namespace BettingSite.Repositories
         public IQueryable<TicketWagers> GetByTicketsId(int ticketId)
         {
             return db.TicketWagers.Where(t => (t.ticketId == ticketId)).AsQueryable();
+        }
+
+        public async Task Update(int ticketWagerId, TicketWagers ticketWager)
+        {
+            db.Entry(ticketWager).State = EntityState.Modified;
+            await db.SaveChangesAsync();
         }
     }
 }

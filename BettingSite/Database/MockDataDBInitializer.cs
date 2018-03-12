@@ -36,7 +36,7 @@ namespace BettingSite.Database
 
             context.Tickets.Add(new Ticket { ticketId = 1, totalWager = 50, walletId = 1, totalQuota = (decimal)1.4 });
 
-            context.TicketWagers.Add(new TicketWagers { ticketWagerId = 1, ticketId = 1, matchId = 1, wagerTypeId = 1, matchQuota = (decimal)1.4 });
+            context.TicketWagers.Add(new TicketWagers { ticketWagerId = 1, ticketId = 1, matchId = 1, wagerTypeId = 1, matchQuota = (decimal)1.4, wagerAmount = 50 });
 
             context.SaveChanges();
         }
