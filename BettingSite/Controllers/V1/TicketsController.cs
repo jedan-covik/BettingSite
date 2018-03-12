@@ -1,5 +1,7 @@
-﻿using BettingSite.Models;
+﻿using BettingSite.App_Start;
+using BettingSite.Models;
 using BettingSite.Repositories;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,20 @@ namespace BettingSite.Controllers.V1
             }
 
             return Ok(ticket);
+        }
+
+        // POST: api/Tickets
+        [ResponseType(typeof(Team))]
+        public async Task<IHttpActionResult> PostTicket(Ticket ticket)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await ticketRepository.Add(ticket);
+
+            return CreatedAtRoute("DefaultApi", new { id = ticket.ticketId }, ticket);
         }
     }
 }
