@@ -27,7 +27,7 @@ namespace BettingSite.Utility
 
         public async Task<decimal> getQuota(Ticket ticket)
         {
-            List<TicketWagers> ticketWagers = await ticketWagersRepository.GetByTicketsId(ticket.ticketId);
+            IQueryable<TicketWagers> ticketWagers = ticketWagersRepository.GetByTicketsId(ticket.ticketId);
 
             decimal totalQuota = 1;
             decimal bonusQuota = 0;

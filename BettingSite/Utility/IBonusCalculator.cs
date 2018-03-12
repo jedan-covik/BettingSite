@@ -9,6 +9,6 @@ namespace BettingSite.Utility
 {
     public interface IBonusCalculator
     {
-        decimal getQuotaBonus(List<TicketWagers> ticketWagers);
+        decimal getQuotaBonus(IQueryable<TicketWagers> ticketWagers);
     }
 }

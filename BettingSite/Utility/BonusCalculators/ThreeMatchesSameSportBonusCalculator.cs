@@ -9,7 +9,7 @@ namespace BettingSite.Utility.BonusCalculators
 {
     public class ThreeMatchesSameSportBonusCalculator : IBonusCalculator
     {
-        public decimal getQuotaBonus(List<TicketWagers> ticketWagers)
+        public decimal getQuotaBonus(IQueryable<TicketWagers> ticketWagers)
         {
 
             Dictionary<int, int> matchesPerSport = new Dictionary<int, int>();

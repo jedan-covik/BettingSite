@@ -17,7 +17,7 @@ namespace BettingSite.Utility.BonusCalculators
             this.sportRepository = sportRepository;
         }
 
-        public decimal getQuotaBonus(List<TicketWagers> ticketWagers)
+        public decimal getQuotaBonus(IQueryable<TicketWagers> ticketWagers)
         {
 
             int sportsCount = sportRepository.GetSpotsCount();

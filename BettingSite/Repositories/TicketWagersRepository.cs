@@ -11,7 +11,7 @@ namespace BettingSite.Repositories
     public interface ITicketWagersRepository
     {
         Task<TicketWagers> GetById(int id);
-        Task<List<TicketWagers>> GetByTicketsId(int ticketId);
+        IQueryable<TicketWagers> GetByTicketsId(int ticketId);
         Task Add(TicketWagers TicketWager);
     }
 
@@ -32,9 +32,9 @@ namespace BettingSite.Repositories
             return await db.TicketWagers.Where(t => (t.ticketWagerId == id)).FirstAsync();
         }
 
-        public async Task<List<TicketWagers>> GetByTicketsId(int ticketId)
+        public IQueryable<TicketWagers> GetByTicketsId(int ticketId)
         {
-            return await db.TicketWagers.Where(t => (t.ticketId == ticketId)).ToListAsync();
+            return db.TicketWagers.Where(t => (t.ticketId == ticketId)).AsQueryable();
         }
     }
 }
