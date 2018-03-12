@@ -16,10 +16,12 @@ namespace BettingSite.Controllers.V1
     public class TicketsController : ApiController
     {
         private ITicketRepository ticketRepository;
+        private IWalletRepository walletRepository;
 
-        public TicketsController(ITicketRepository ticketRepository)
+        public TicketsController(ITicketRepository ticketRepository, IWalletRepository walletRepository)
         {
             this.ticketRepository = ticketRepository;
+            this.walletRepository = walletRepository;
         }
 
         // GET: api/Tickets/5
@@ -43,6 +45,17 @@ namespace BettingSite.Controllers.V1
             {
                 return BadRequest(ModelState);
             }
+
+            Wallet wallet = await walletRepository.GetById(ticket.walletId);
+
+            if (wallet.amount < ticket.totalWager)
+            {
+                ModelState.AddModelError("Wallet Amount", "Not enough founds");
+                return BadRequest(ModelState);
+            }
+
+            wallet.amount -= ticket.totalWager;
+            await walletRepository.Update(wallet.walletId, wallet);
 
             await ticketRepository.Add(ticket);
 

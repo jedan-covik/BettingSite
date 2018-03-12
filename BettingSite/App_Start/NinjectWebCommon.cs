@@ -58,6 +58,8 @@ namespace BettingSite.App_Start
 
             kernel.Bind<ITicketWagersRepository>().To<TicketWagersRepository>();
 
+            kernel.Bind<IWalletRepository>().To<WalletRepository>();
+
             kernel.Bind(x =>
                 x.FromThisAssembly()
                 .SelectAllClasses()

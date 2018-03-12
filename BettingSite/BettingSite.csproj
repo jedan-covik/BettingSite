@@ -218,6 +218,7 @@
     <Compile Include="Repositories\TeamRepository.cs" />
     <Compile Include="Repositories\SportRepository.cs" />
     <Compile Include="Repositories\TicketWagersRepository.cs" />
+    <Compile Include="Repositories\WalletRepository.cs" />
     <Compile Include="Utility\BonusCalculators\AllSportsBonusCalculator.cs" />
     <Compile Include="Utility\BonusCalculators\ThreeMatchesSameSportBonusCalculator.cs" />
     <Compile Include="Utility\IBonusCalculator.cs" />
