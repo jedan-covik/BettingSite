@@ -12,14 +12,14 @@ namespace BettingSite.Repositories
     public interface ITicketRepository
     {
         Task<Ticket> GetById(int id);
-        Task Add(Ticket team);
+        Task Add(Ticket Ticket);
     }
 
     public class TicketRepository : ITicketRepository
     {
         private BettingSiteContext db = new BettingSiteContext();
 
-        public Task Add(Ticket team)
+        public Task Add(Ticket Ticket)
         {
             throw new NotImplementedException();
         }

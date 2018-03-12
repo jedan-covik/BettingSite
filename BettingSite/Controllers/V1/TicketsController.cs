@@ -20,7 +20,7 @@ namespace BettingSite.Controllers.V1
             this.ticketRepository = ticketRepository;
         }
 
-        // GET: api/Sports/5
+        // GET: api/Tickets/5
         [ResponseType(typeof(Ticket))]
         public async Task<IHttpActionResult> GetTicket(int id)
         {
