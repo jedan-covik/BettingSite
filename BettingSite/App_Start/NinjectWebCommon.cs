@@ -9,6 +9,7 @@ using Ninject.Web.WebApi;
 using System;
 using System.Web;
 using System.Web.Http;
+using static BettingSite.Repositories.TicketWagersRepository;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
@@ -50,6 +51,8 @@ namespace BettingSite.App_Start
             kernel.Bind<ITeamRepository>().To<TeamRepository>();
 
             kernel.Bind<ITicketRepository>().To<TicketRepository>();
+
+            kernel.Bind<ITicketWagersRepository>().To<TicketWagersRepository>();
         }
     }
 }

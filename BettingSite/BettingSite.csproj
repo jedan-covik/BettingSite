@@ -190,6 +190,7 @@
     <Compile Include="Controllers\V1\SportsController.cs" />
     <Compile Include="Controllers\V1\TeamsController.cs" />
     <Compile Include="Controllers\V1\TicketsController.cs" />
+    <Compile Include="Controllers\V1\TicketWagersController.cs" />
     <Compile Include="Database\MockDataDBInitializer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
