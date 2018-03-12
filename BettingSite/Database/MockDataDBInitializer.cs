@@ -32,7 +32,7 @@ namespace BettingSite.Database
             context.Matches.Add(new Match { matchId = 4, homeTeamId = 5, guestTeamId = 4, matchQuota = (decimal)1.6, matchDateTime = new DateTime(2018, 3, 24, 18, 0, 0) });
 
 
-            context.Wallets.Add(new Wallet { walletId = 1, amount = 100 });
+            context.Wallets.Add(new Wallet { walletId = 1, amount = 1000 });
 
             context.Tickets.Add(new Ticket { ticketId = 1, totalWager = 50, walletId = 1, totalQuota = (decimal)1.4 });
 
