@@ -17,6 +17,8 @@ namespace BettingSite.Repositories
         Task Update(int id, Sport sport);
         Task Delete(Sport sport);
 
+        int GetSpotsCount();
+
         bool SportExists(int id);
     }
 
@@ -61,6 +63,11 @@ namespace BettingSite.Repositories
         public bool SportExists(int id)
         {
             return db.Sports.Count(e => e.sportId == id) > 0;
+        }
+
+        public int GetSpotsCount()
+        {
+            return db.Sports.Count(e => e.deleted == false);
         }
     }
 }

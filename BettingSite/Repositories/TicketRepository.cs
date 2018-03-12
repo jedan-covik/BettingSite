@@ -13,20 +13,28 @@ namespace BettingSite.Repositories
     {
         Task<Ticket> GetById(int id);
         Task Add(Ticket Ticket);
+        Task Update(int id, Ticket ticket);
     }
 
     public class TicketRepository : ITicketRepository
     {
         private BettingSiteContext db = new BettingSiteContext();
 
-        public Task Add(Ticket Ticket)
+        public async Task Add(Ticket Ticket)
         {
-            throw new NotImplementedException();
+            db.Tickets.Add(Ticket);
+            await db.SaveChangesAsync();
         }
 
         public async Task<Ticket> GetById(int id)
         {
             return await db.Tickets.Where(t => (t.ticketId == id)).FirstAsync();
+        }
+
+        public async Task Update(int id, Ticket ticket)
+        {
+            db.Entry(ticket).State = EntityState.Modified;
+            await db.SaveChangesAsync();
         }
     }
 }
