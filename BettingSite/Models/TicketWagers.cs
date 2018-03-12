@@ -11,13 +11,14 @@ namespace BettingSite.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ticketWagerId { get; set; }
-
-        [Index("SX_Ticket")]
+        
         [Required]
+        [Index("UX_Ticket_Match", 1, IsUnique = true)]
         public int ticketId { get; set; }
 
         [Required]
         [Index("SX_Match")]
+        [Index("UX_Ticket_Match", 2, IsUnique = true)]
         public int matchId { get; set; }
 
         [Required]
