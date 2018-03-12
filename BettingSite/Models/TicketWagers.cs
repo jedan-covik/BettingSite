@@ -13,16 +13,20 @@ namespace BettingSite.Models
         public int ticketWagerId { get; set; }
 
         [Index("SX_Ticket")]
+        [Required]
         public int ticketId { get; set; }
 
+        [Required]
         [Index("SX_Match")]
         public int matchId { get; set; }
 
+        [Required]
         public int wagerTypeId { get; set; }
 
         [Column(TypeName = "Money")]
         public decimal wagerAmount { get; set; }
 
+        [Required]
         public decimal matchQuota { get; set; }
 
         public DateTime createDate { get; set; } = DateTime.UtcNow;

@@ -14,9 +14,11 @@ namespace BettingSite.Models
 
         public decimal totalQuota { get; set; }
 
+        [Required]
         [Column(TypeName = "Money")]
         public decimal totalWager { get; set; }
 
+        [Required]
         [Index("SX_Wallet")]
         public int walletId { get; set; }
 
